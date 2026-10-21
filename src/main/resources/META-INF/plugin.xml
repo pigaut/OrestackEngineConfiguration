@@ -1,0 +1,30 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>io.github.pigaut.rpg.OrestackEngineConfiguration</id>
+
+    <name>Orestack Engine Config</name>
+
+    <vendor url="https://github.com/pigaut">pigaut</vendor>
+
+    <description><![CDATA[
+        Syntax highlighting, goto shortcut, and auto-completion for Orestack Engine YAML configuration files.<br>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="yaml"
+                   implementationClass="io.github.pigaut.rpg.OrestackYamlConfiguration"/>
+        <gotoDeclarationHandler implementation="io.github.pigaut.rpg.OrestackGotoDeclarationHandler"/>
+        <fileBasedIndex implementation="io.github.pigaut.rpg.OrestackKeyIndex"/>
+        <psi.referenceContributor language="yaml"
+                                  implementation="io.github.pigaut.rpg.OrestackReferenceContributor"/>
+        <findUsagesHandlerFactory order="first"
+                                  implementation="io.github.pigaut.rpg.OrestackFindUsagesHandlerFactory"/>
+        <referencesSearch
+                implementation="io.github.pigaut.rpg.OrestackReferencesSearcher"/>
+        <completion.contributor language="yaml"
+                                implementationClass="io.github.pigaut.rpg.OrestackShortcutCompletionContributor"/>
+    </extensions>
+</idea-plugin>
